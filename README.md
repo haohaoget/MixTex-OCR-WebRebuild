@@ -99,7 +99,7 @@ cd ../web-frontend
 npm run dev
 ```
 
-前端将在 http://localhost:5173 启动，后端API将在 http://localhost:8000 提供服务。
+前端将在 http://localhost:3000 启动，后端API将在 http://localhost:8000 提供服务。
 
 
 
