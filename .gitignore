@@ -1,0 +1,8 @@
+# 忽略 model 目录
+/model/
+
+# 忽略 webapi 中的 _pycache_ 缓存目录
+/webapi/__pycache__/
+
+# 忽略前端依赖目录
+/web-frontend/node_modules/
