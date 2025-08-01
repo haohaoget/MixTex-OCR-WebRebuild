@@ -6,3 +6,5 @@
 
 # 忽略前端依赖目录
 /web-frontend/node_modules/
+
+/web-frontend/dist/
