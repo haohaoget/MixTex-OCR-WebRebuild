@@ -1,0 +1,54 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+LICENSE
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Node.js
+web-frontend/node_modules
+web-frontend/npm-debug.log*
+web-frontend/yarn-debug.log*
+web-frontend/yarn-error.log*
+web-frontend/.npm
+web-frontend/.eslintcache
+
+# Python
+webapi/__pycache__
+webapi/*.pyc
+webapi/*.pyo
+webapi/*.pyd
+webapi/.Python
+webapi/env
+webapi/venv
+webapi/.env
+webapi/.venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs
+
+# Temporary files
+tmp
+temp
+.tmp
+
+# Model files (too large for Docker build context)
+# Uncomment if you have large model files and will mount them separately
+# model/*.onnx

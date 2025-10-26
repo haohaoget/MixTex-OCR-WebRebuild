@@ -1,5 +1,7 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from PIL import Image
 import io
 import os
@@ -25,11 +27,19 @@ app = FastAPI(title="MixTeX OCR API", version="1.0.0")
 # 配置CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 挂载静态文件
+if os.path.exists("/app/static"):
+    app.mount("/static", StaticFiles(directory="/app/static"), name="static")
+else:
+    # 开发环境下的静态文件路径
+    if os.path.exists("../web-frontend/dist"):
+        app.mount("/static", StaticFiles(directory="../web-frontend/dist"), name="static")
 
 
 def find_valid_model_path():
@@ -257,7 +267,14 @@ async def startup_event():
 
 @app.get("/")
 async def root():
-    return {"message": "MixTeX OCR API is running"}
+    """前端主页"""
+    # 检查静态文件目录
+    if os.path.exists("/app/static/index.html"):
+        return FileResponse("/app/static/index.html")
+    elif os.path.exists("../web-frontend/dist/index.html"):
+        return FileResponse("../web-frontend/dist/index.html")
+    else:
+        return {"message": "MixTeX OCR API is running", "frontend": "not built"}
 
 
 @app.get("/health")
