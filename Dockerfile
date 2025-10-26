@@ -44,7 +44,8 @@ COPY --from=frontend-builder /app/frontend/dist ./static
 RUN mkdir -p /app/model
 
 # Copy model files (if they exist)
-COPY model/ /app/model/ 2>/dev/null || true
+# Note: This will fail if model/ doesn't exist, but that's okay for CI builds
+COPY model/ /app/model/
 
 # Set environment variables
 ENV PYTHONPATH=/app
