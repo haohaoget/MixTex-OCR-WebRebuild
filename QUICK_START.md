@@ -20,7 +20,10 @@ cd MixTex-OCR-WebRebuild
 # 2. 下载模型文件到 model 目录
 # 从 Releases 页面下载模型文件并解压到 model/ 目录
 
-# 3. 运行容器
+# 3. 登录GitHub Container Registry（如果镜像仓库是私有的）
+echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+
+# 4. 运行容器
 docker run -d \
   --name mixtex-ocr \
   --restart unless-stopped \
@@ -28,9 +31,14 @@ docker run -d \
   -v $(pwd)/model:/app/model:ro \
   ghcr.io/haohaoget/mixtex-ocr-webrebuild:latest
 
-# 4. 访问服务
+# 5. 访问服务
 echo "访问 http://localhost:8000"
 ```
+
+**注意**: 
+- 镜像名称使用小写: `ghcr.io/haohaoget/mixtex-ocr-webrebuild`
+- 如果镜像仓库是私有的，需要先登录GitHub Container Registry
+- 建议将仓库设置为公开以便其他人使用
 
 ### 方式二：使用 Docker Compose
 

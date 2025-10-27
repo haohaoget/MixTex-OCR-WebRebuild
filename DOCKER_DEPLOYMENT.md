@@ -27,6 +27,16 @@ docker run -d \
   ghcr.io/haohaoget/mixtex-ocr-webrebuild:latest
 ```
 
+**注意**: 
+- 镜像名称使用小写: `ghcr.io/haohaoget/mixtex-ocr-webrebuild`
+- 如果镜像仓库是私有的，需要先登录GitHub Container Registry
+- 建议将仓库设置为公开以便其他人使用
+
+```bash
+# 登录GitHub Container Registry（如果需要）
+echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+```
+
 ### 方式二：使用 Docker Compose
 
 ```bash
